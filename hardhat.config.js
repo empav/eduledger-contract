@@ -5,7 +5,7 @@ const { SEPOLIA_RPC_URL, SEPOLIA_PRIVATE_KEY } = process.env;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  defaultNetwork: "sepolia",
+  defaultNetwork: "hardhat",
   solidity: {
     version: "0.8.28",
     settings: {
