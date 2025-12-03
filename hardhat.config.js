@@ -1,7 +1,13 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
-const { SEPOLIA_RPC_URL, SEPOLIA_PRIVATE_KEY } = process.env;
+const {
+  SEPOLIA_RPC_URL,
+  SEPOLIA_PRIVATE_KEY,
+  MAINNET_RPC_URL,
+  MAINNET_PRIVATE_KEY,
+  ETHERSCAN_API_KEY,
+} = process.env;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -29,5 +35,15 @@ module.exports = {
       url: SEPOLIA_RPC_URL,
       accounts: [SEPOLIA_PRIVATE_KEY],
     },
+    mainnet: {
+      url: MAINNET_RPC_URL,
+      accounts: [MAINNET_PRIVATE_KEY],
+    },
+  },
+  etherscan: {
+    apiKey: ETHERSCAN_API_KEY,
+  },
+  sourcify: {
+    enabled: false,
   },
 };

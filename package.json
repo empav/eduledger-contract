@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "compile": "npx hardhat compile",
-    "deploy:sepolia": "npx hardhat run scripts/deploy.js --network sepolia"
+    "deploy:sepolia": "npx hardhat ignition deploy ignition/modules/EduLedger.ts --network sepolia",
+    "deploy:mainnet": "npx hardhat ignition deploy ignition/modules/EduLedger.ts --network mainnet",
+    "verify:mainnet": "REPORT_GAS=true npx hardhat verify --network mainnet 0x365336199263B5ACB4c0F4de6C04b3Bb508C86Dc"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.1.0",
