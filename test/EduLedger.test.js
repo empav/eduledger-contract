@@ -42,6 +42,18 @@ describe("EduLedger", function () {
     expect(await eduLedger.hasUserPurchased(0, buyer.address)).to.equal(true);
   });
 
+  it("prevents a user from buying the same file twice", async function () {
+    const { eduLedger, buyer } = await loadFixture(deployEduLedgerFixture);
+    const price = ethers.parseEther("0.25");
+
+    await eduLedger.mintFile("cid-duplicate", price);
+    await eduLedger.connect(buyer).buyAccess(0, { value: price });
+
+    await expect(
+      eduLedger.connect(buyer).buyAccess(0, { value: price })
+    ).to.be.revertedWith("Already purchased");
+  });
+
   it("reverts when trying to buy without a seller (free file) or with wrong price", async function () {
     const { eduLedger, buyer } = await loadFixture(deployEduLedgerFixture);
 

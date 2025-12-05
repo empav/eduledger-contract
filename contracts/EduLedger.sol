@@ -71,6 +71,7 @@ contract EduLedger is ERC721URIStorage, ReentrancyGuard {
 
         require(seller != address(0), "Invalid seller");
         require(seller != msg.sender, "Cannot buy your own file");
+        require(!hasPurchased[tokenId][msg.sender], "Already purchased");
 
         // Se price > 0 ci deve essere il valore esatto
         if (price > 0) {
